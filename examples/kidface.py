@@ -11,8 +11,8 @@ import sys
 # Get a reference to webcam #0 (the default one)
 #video_capture = cv2.VideoCapture("childrenFaces.mp4")
 video_capture = cv2.VideoCapture("kid3_trim1_30sec.mp4")
-length = int(video_capture.get(cv2.cv.CV_CAP_PROP_FRAME_COUNT))
-fourcc = cv2.cv.CV_FOURCC(*'XVID')
+length = int(video_capture.get(cv2.CAP_PROP_FRAME_COUNT))
+fourcc = cv2.VideoWriter_fourcc(*'XVID')
 out = cv2.VideoWriter('output_kid3_trim1_30sec_block.avi', fourcc, 29.97, (768, 432))
 
 
@@ -22,8 +22,11 @@ face_locations = []
 while (video_capture.isOpened()):
     # Grab a single frame of video
     ret, frame = video_capture.read()
+    frame_number += 1
     if not ret:
         break
+
+
     # Resize frame of video to 1/4 size for faster face detection processing
 #    small_frame = cv2.resize(frame, (0, 0), fx=0.25, fy=0.25)
     rgb_frame = frame[:, :, ::-1]
@@ -53,6 +56,7 @@ while (video_capture.isOpened()):
     # Display the resulting image
 #    cv2.imshow('Video', frame)
     out.write(frame)
+    print("Writing frame {} / {}".format(frame_number, length))
     # Hit 'q' on the keyboard to quit!
     #if cv2.waitKey(1) & 0xFF == ord('q'):
         #break

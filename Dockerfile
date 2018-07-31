@@ -41,6 +41,7 @@ RUN cd ~ && \
 # RUN cd /root/your_app_or_whatever && \
 #     pip3 install -r requirements.txt
 # RUN whatever_command_you_run_to_start_your_app
+RUN python3.6 -m pip install opencv-python
 
 COPY . /root/face_recognition
 RUN cd /root/face_recognition && \
