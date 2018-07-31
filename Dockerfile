@@ -22,6 +22,7 @@ RUN apt-get install -y --fix-missing \
     pkg-config \
     python3-dev \
     python3-numpy \
+    python-opencv \
     software-properties-common \
     zip \
     && apt-get clean && rm -rf /tmp/* /var/tmp/*
@@ -47,4 +48,4 @@ RUN cd /root/face_recognition && \
     python3 setup.py install
 
 CMD cd /root/face_recognition/examples && \
-    python3 recognize_faces_in_pictures.py
+    python3 kidface.py
