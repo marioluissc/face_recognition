@@ -42,6 +42,8 @@ RUN cd ~ && \
 #     pip3 install -r requirements.txt
 # RUN whatever_command_you_run_to_start_your_app
 RUN python3.6 -m pip install opencv-python
+RUN curl https://sdk.cloud.google.com | bash
+
 
 COPY . /root/face_recognition
 RUN cd /root/face_recognition && \
@@ -50,3 +52,8 @@ RUN cd /root/face_recognition && \
 
 CMD cd /root/face_recognition/examples && \
     python3 kidface.py
+
+
+
+
+#CMD gsutil cp output_kid3_trim1_30sec_block.avi gs://os-video-processing

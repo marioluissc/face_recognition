@@ -13,12 +13,12 @@ import sys
 video_capture = cv2.VideoCapture("kid3_trim1_30sec.mp4")
 length = int(video_capture.get(cv2.CAP_PROP_FRAME_COUNT))
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
-out = cv2.VideoWriter('output_kid3_trim1_30sec_block.avi', fourcc, 29.97, (768, 432))
+out = cv2.VideoWriter('output/video_'+ time.strftime("%d-%m-%Y_%X")+'.avi', fourcc, 29.97, (768, 432))
 
 
 # Initialize some variables
 face_locations = []
-
+frame_number = 0
 while (video_capture.isOpened()):
     # Grab a single frame of video
     ret, frame = video_capture.read()
